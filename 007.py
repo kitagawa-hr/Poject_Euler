@@ -8,16 +8,9 @@ that the 6th prime is 13.
 What is the 10001st prime number?
 """
 
-from functions import is_prime
+from functions import is_prime, gen_num
 
-def gen_num():
-    n = 1
-    yield 2
-    yield 3
-    while True:
-        yield 6 * n - 1
-        yield 6 * n + 1
-        n += 1
+N = 10001
 
 
 def main():
@@ -25,10 +18,11 @@ def main():
     for i in gen_num():
         if is_prime(i):
             count += 1
-        if count == 100001:
+        if count == N:
             print(i)
             break
     return
+
 
 if __name__ == '__main__':
     main()

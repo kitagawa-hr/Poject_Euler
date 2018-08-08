@@ -37,7 +37,7 @@ def is_prime(num):
     if num % 6 in [0, 2, 3, 4]:
         return False
     div_max = int(math.sqrt(num))
-    for div in range(5, div_max+1, 2):
+    for div in range(5, div_max + 1, 2):
         if num % div == 0:
             return False
     return True
@@ -58,7 +58,7 @@ def factorint(x):
     factors = defaultdict(int)
     while not is_prime(x):
         div_max = int(math.sqrt(x))
-        for div in range(2, div_max+1):
+        for div in range(2, div_max + 1):
             if x % div == 0:
                 factors[div] += 1
                 x = int(x / div)
@@ -76,11 +76,24 @@ def divisor_num(x):
     >>> divisor_num(100)
     9
     """
-    factor_pow = map(lambda y: y+1, factorint(x).values())
+    factor_pow = map(lambda y: y + 1, factorint(x).values())
     div_num = reduce(mul, factor_pow)
     return div_num
 
 
+def gen_num():
+    n = 1
+    yield 2
+    yield 3
+    while True:
+        yield 6 * n - 1
+        yield 6 * n + 1
+        n += 1
+
+
+def reduce_mul(num_list):
+    return reduce(mul, num_list)
+
 
 if __name__ == '__main__':
-   pass
+    pass
