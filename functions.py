@@ -81,6 +81,24 @@ def divisor_num(x):
     return div_num
 
 
+def divisor_sum(x):
+    """
+    >>> divisor_sum(220)
+    284
+    >>> divisor_sum(284)
+    220
+    >>> divisor_sum(28)
+    28
+    """
+    factors = factorint(x)
+    primes = factors.keys()
+    powers = factors.values()
+    sums = list()
+    for i, p in enumerate(list(primes)):
+        sums.append(sum([math.pow(p, x) for x in range(list(powers)[i] + 1)]))
+    return int(reduce_mul(sums)) - x
+
+
 def gen_num():
     n = 1
     yield 2
