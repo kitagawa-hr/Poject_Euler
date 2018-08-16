@@ -22,42 +22,24 @@ Find the value of d < 1000 for which ^1/[d] contains the longest recurring
 cycle in its decimal fraction part.
 """
 
-# (1/7)*1000000 - (1/7) = Natural
-# (1/7) * 999999 = Natural
+# a = 0.0(123)
+# 999*a = 12.3
 
-from functions import factorint
+from functions import factorint, rev_factorint
 
 N = 1000
 
 
 def cycle_len(x):
-    """
-    >>> cycle_len(2)
-    0
-    >>> cycle_len(7)
-    6
-    >>> cycle_len(9)
-    1
-    >>> cycle_len(6)
-    1
-    """
-
-    factors = factorint(x)
-    if 2 in factors:
-        factors.pop(2)
-    if 5 in factors:
-        factors.pop(5)
-    if not factors:
-        return 0
     n = 1
-    while True:
-        if str(int('9' * n) / x)[-1] == '0':
-            return n
+    while int('9' * n) % x != 0:
         n += 1
+    return n
 
 
 def main():
-    ans = {cycle_len(n): n for n in range(1, N + 1)}
+    arr = [x for x in range(2, N + 1) if x % 2 != 0 and x % 5 != 0]
+    ans = {cycle_len(n): n for n in arr}
     print(ans[max(ans.keys())])
     return
 

@@ -11,7 +11,6 @@ from collections import defaultdict
 from functools import reduce
 from operator import mul
 import math
-from timeit import timeit
 from numba import jit
 
 
@@ -31,7 +30,8 @@ def is_prime(num):
     >>> is_prime(111111)
     False
     """
-
+    if num == 1:
+        return False
     if num == 2 or num == 3:
         return True
     if num % 6 in [0, 2, 3, 4]:
@@ -67,6 +67,22 @@ def factorint(x):
     return factors
 
 
+def rev_factorint(x):
+    """
+    >>> rev_factorint({2: 3, 3: 1})
+    24
+    >>> rev_factorint({2: 2, 7: 1})
+    28
+    >>> rev_factorint({2: 4, 5: 1})
+    80
+    >>> rev_factorint({7: 1, 11: 1})
+    77
+    """
+    keys = x.keys()
+    values = x.values()
+    return int(reduce_mul([math.pow(a, b) for a, b in zip(keys, values)]))
+
+
 def divisor_num(x):
     """
     >>> divisor_num(28)
@@ -100,6 +116,9 @@ def divisor_sum(x):
 
 
 def gen_num():
+    """
+    generate numbers which is tested to be prime number or not
+    """
     n = 1
     yield 2
     yield 3

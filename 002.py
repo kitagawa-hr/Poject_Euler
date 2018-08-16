@@ -11,12 +11,14 @@ Find the sum of all the even-valued terms in the sequence which do not
 exceed four million.
 """
 
+import functools
 
-def fibo(n, cache={1: 1, 2: 2}):
-    if n in cache.keys():
-        return cache[n]
-    cache[n] = fibo(n - 1) + fibo(n - 2)
-    return cache[n]
+
+@functools.lru_cache(maxsize=None)
+def fibo(n):
+    if n == 1 or n == 2:
+        return n
+    return fibo(n - 1) + fibo(n - 2)
 
 
 def main():
