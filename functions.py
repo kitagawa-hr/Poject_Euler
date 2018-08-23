@@ -17,7 +17,15 @@ from numba import jit
 @jit('boolean(int64)')
 def is_prime(num):
     """
+    >>> is_prime(-54)
+    False
+    >>> is_prime(3.5)
+    False
+    >>> is_prime(1)
+    False
     >>> is_prime(3)
+    True
+    >>> is_prime(5)
     True
     >>> is_prime(7)
     True
@@ -30,7 +38,9 @@ def is_prime(num):
     >>> is_prime(111111)
     False
     """
-    if num == 1:
+    if not isinstance(num, int):
+        return False
+    if num <= 1:
         return False
     if num == 2 or num == 3:
         return True

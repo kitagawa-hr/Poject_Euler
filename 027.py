@@ -29,7 +29,7 @@ values of n, starting with n = 0.
 from itertools import product
 from functions import is_prime
 
-N = 5
+N = 1000
 
 
 def quadratic(x, a, b):
