@@ -18,15 +18,13 @@ import functools
 
 coins = (1, 2, 5, 10, 20, 50, 100, 200)
 
+
 @functools.lru_cache(maxsize=None)
 def pattern(price):
-    if price == 1 or price == 2:
-        return 1
+
     return
 
-
 def main():
-
     return
 
 
