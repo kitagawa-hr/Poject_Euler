@@ -1,6 +1,6 @@
-import math, nimpy
+import math
 
-proc is_prime(num: int): bool {.exportpy.} =
+proc is_prime(num: int): bool =
   if num == 1:
     return false
   if num == 2 or num == 3:
