@@ -20,8 +20,9 @@ proc fibo(n: int): int =
     return fibo(n - 1) + fibo(n - 2)
 
 
-var
+let
     MAX = 4000000
+var
     n = 1
     fibo_list: seq[int] = @[]
 while fibo(n) <= MAX:
