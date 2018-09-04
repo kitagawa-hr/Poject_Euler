@@ -7,10 +7,11 @@ Filename: functions
 @author: kitagawaharuki
 """
 
+import math
 from collections import defaultdict
 from functools import reduce
 from operator import mul
-import math
+
 from numba import jit
 
 
@@ -140,6 +141,38 @@ def gen_num():
 
 def reduce_mul(num_list):
     return reduce(mul, num_list)
+
+
+def is_pandigital(x, y):
+    """
+    >>> is_pandigital(12345, 5)
+    True
+    >>> is_pandigital('123456789', 9)
+    True
+    >>> is_pandigital(121345, 5)
+    False
+    >>> is_pandigital(123457, 7)
+    False
+
+    """
+
+    string = str(x)
+    if not len(string) == len(set(string)):
+        return False
+    for n in range(1, y + 1):
+        if str(n) not in string:
+            return False
+    return True
+
+
+def list_to_num(lis):
+    """
+    >>> list_to_num([1,2,3,4,5])
+    12345
+    >>> list_to_num([1,3,4,5,0])
+    13450
+    """
+    return int(''.join(list(map(str, lis))))
 
 
 if __name__ == '__main__':
