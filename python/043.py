@@ -20,4 +20,33 @@ way, we note the following:
 Find the sum of all 0 to 9 pandigital numbers with this property.
 """
 
+from itertools import permutations
 
+from functions import list_to_num
+
+
+def has_property(d):
+    """
+    >>> has_property(1406357289)
+    True
+    """
+    s = str(d)
+    primes = [2, 3, 5, 7, 11, 13, 17]
+    if d < 1000000000:
+        return False
+    for i in range(7):
+        num = int(s[i + 1] + s[i + 2] + s[i + 3])
+        if num % primes[i] != 0:
+            return False
+    return True
+
+
+def main():
+    num = [x for x in range(10)]
+    perm_list = [list_to_num(x) for x in permutations(num, 10)]
+    print(sum([x for x in perm_list if has_property(x)]))
+    return
+
+
+if __name__ == '__main__':
+    main()
