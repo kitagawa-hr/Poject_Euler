@@ -19,4 +19,19 @@ What is the largest 1 to 9 pandigital 9-digit number that can be formed as
 the concatenated product of an integer with (1,2, ... , n) where n > 1?
 """
 
+from functions import is_pandigital
 
+ans = 918273645
+
+for n in range(90, 100):
+    num = int(str(n) + str(2 * n) + str(3 * n))
+    if is_pandigital(num, 9):
+        ans = max(ans, num)
+
+
+for n in range(9000, 10000):
+    num = int(str(n) + str(2 * n))
+    if is_pandigital(num, 9):
+        ans = max(ans, num)
+
+print(ans)
