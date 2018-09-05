@@ -19,5 +19,11 @@ the value of D?
 def gen_pentagon():
     n = 1
     while True:
-        yield n * (3 * n - 2) / 2
+        yield n * (3 * n - 1) / 2
         n += 1
+
+def main():
+    pent =  gen_pentagon()
+    
+    print(pent.next())
+    
