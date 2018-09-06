@@ -15,9 +15,18 @@ and difference is pentagonal and D = |P[k] - P[j]| is minimised; what is
 the value of D?
 """
 
+from functools import lru_cache
 
-def gen_pentagon():
+
+@lru_cache
+def pentagon(n):
+    return n * (3 * n - 2) / 2
+
+
+def main():
+    pentagon_list = list()
     n = 1
     while True:
-        yield n * (3 * n - 2) / 2
+        pentagon_list.append(pentagon(n))
         n += 1
+
