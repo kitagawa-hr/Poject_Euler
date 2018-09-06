@@ -1,15 +1,17 @@
-fn max_factor(n: i64){
-    let mut lim = sqrt(n);
-    let mut i: i32 = 2;
-    while (i <= lim){
-        if (n%i==0){
-            return max_factor(int(n/i));
+fn max_factor(n: i64) ->i64{
+    let lim = (n as f64).sqrt() as i64;
+    let mut i: i64 = 3; 
+    while i <= lim{
+        if n % i == 0{
+            let m = n/i as i64;
+            return max_factor(m);
         }
-        i++;
+        i += 2;
     }
-    n
+    return n;
 }
 fn main(){
-    let N = 600851475143;
-    println!("{}", max_factor(N));
+    let num = 600851475143;
+    let ans = max_factor(num);
+    println!("{}", ans);
 }
