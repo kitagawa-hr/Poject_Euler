@@ -3,3 +3,10 @@
 __pycache__
 nimcache
 .vscode
+
+cpp/*
+rust/*
+nim/*
+!*.cpp
+!*.rs
+!*.nim
