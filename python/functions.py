@@ -174,6 +174,20 @@ def list_to_num(lis):
     """
     return int(''.join(list(map(str, lis))))
 
+def is_square(x):
+    """
+    >>> is_square(25)
+    True
+    >>> is_square(-1)
+    False
+    >>> is_square(121)
+    True
+    """
+
+    if x < 0:
+        return False
+    if math.pow(int(math.sqrt(x)), 2) == x:
+        return True 
 
 if __name__ == '__main__':
     pass

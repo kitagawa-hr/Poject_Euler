@@ -15,18 +15,56 @@ and difference is pentagonal and D = |P[k] - P[j]| is minimised; what is
 the value of D?
 """
 
-from functools import lru_cache
+import math
+from itertools import count
+
+from functions import is_square
 
 
-@lru_cache
-def pentagon(n):
-    return n * (3 * n - 2) / 2
+def pentagon():
+    for n in count(2):
+        yield int(n * (3 * n - 1) / 2)
+
+
+def is_pentagon(x):
+    """
+    >>> is_pentagon(1)
+    True
+    >>> is_pentagon(5)
+    True
+    >>> is_pentagon(12)
+    True
+    >>> is_pentagon(22)
+    True
+    >>> is_pentagon(15)
+    False
+    """
+    if x < 1:
+        return False
+    if is_square(1 + 24 * x):
+        if int(math.sqrt(1 + 24 * x)) % 6 == 5:
+            return True
+    return False
 
 
 def main():
-    pentagon_list = list()
-    n = 1
+    pentagon_list = [1]
+    ans = 1000000
+    gen = pentagon()
     while True:
-        pentagon_list.append(pentagon(n))
-        n += 1
+        pentagon_list.append(next(gen))
+        max_pent = pentagon_list[-1]
+        lis = [
+            max_pent - x for x in pentagon_list
+            if max_pent - x in pentagon_list and is_pentagon(max_pent + x)
+        ]
+        if lis:
+            ans = min(ans, min(lis))
+        if ans < pentagon_list[-1] - pentagon_list[-2]:
+            print(ans)
+            #print(n)
+            return
 
+
+if __name__ == '__main__':
+    main()
