@@ -18,7 +18,7 @@ the value of D?
 import math
 from itertools import count
 
-from functions import is_square
+from python.functions import is_square
 
 
 def pentagon():
