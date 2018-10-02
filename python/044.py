@@ -16,7 +16,8 @@ the value of D?
 """
 
 import math
-from itertools import count
+from itertools import count, combinations
+from operator import sub, add
 
 from functions import is_square
 
@@ -48,23 +49,19 @@ def is_pentagon(x):
 
 
 def main():
-    pentagon_list = [1]
-    ans = 1000000
-    gen = pentagon()
+    index = g_pent = 0
     while True:
-        pentagon_list.append(next(gen))
-        max_pent = pentagon_list[-1]
-        lis = [
-            max_pent - x for x in pentagon_list
-            if max_pent - x in pentagon_list and is_pentagon(max_pent + x)
-        ]
-        if lis:
-            ans = min(ans, min(lis))
-        if ans < pentagon_list[-1] - pentagon_list[-2]:
-            print(ans)
-            #print(n)
-            return
+        g_pent += 3 * index + 1
+        index += 1
+        s_pent = 0
+        for d in range(index - 1):
+            s_pent += 3 * d + 1
+            j, r = divmod(g_pent - s_pent, 3 * (d + 1))
+            # g_pent - s_pent = 3(d+1) * j + r
+            if (not r) and is_pentagon(j * (3 * j - 1) + g_pent):
+                print(g_pent)
+                return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
