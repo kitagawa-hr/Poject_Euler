@@ -18,7 +18,7 @@ the value of D?
 import math
 from itertools import count
 
-from python.functions import is_square
+from functions import is_square
 
 
 def pentagon():
@@ -49,21 +49,17 @@ def is_pentagon(x):
 
 def main():
     pentagon_list = [1]
-    ans = 1000000
     gen = pentagon()
     while True:
         pentagon_list.append(next(gen))
         max_pent = pentagon_list[-1]
-        lis = [
-            max_pent - x for x in pentagon_list
-            if max_pent - x in pentagon_list and is_pentagon(max_pent + x)
-        ]
-        if lis:
-            ans = min(ans, min(lis))
-        if ans < pentagon_list[-1] - pentagon_list[-2]:
-            print(ans)
-            #print(n)
-            return
+        for pent in pentagon_list:
+            if max_pent - pent in pentagon_list and is_pentagon(max_pent + pent):
+                ans = max_pent - pent
+            if ans < pentagon_list[-1] - pentagon_list[-2]:
+                print(ans)
+                #print(n)
+                return
 
 
 if __name__ == '__main__':
