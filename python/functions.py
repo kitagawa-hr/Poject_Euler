@@ -126,14 +126,15 @@ def divisor_sum(x):
     return int(reduce_mul(sums)) - x
 
 
-def gen_num():
+@jit
+def gen_num(lim=10000):
     """
     generate numbers which is tested to be prime number or not
     """
     n = 1
     yield 2
     yield 3
-    while True:
+    while 6 * n + 1 <= lim:
         yield 6 * n - 1
         yield 6 * n + 1
         n += 1
@@ -174,6 +175,7 @@ def list_to_num(lis):
     """
     return int(''.join(list(map(str, lis))))
 
+
 def is_square(x):
     """
     >>> is_square(25)
@@ -187,7 +189,8 @@ def is_square(x):
     if x < 0:
         return False
     if math.pow(int(math.sqrt(x)), 2) == x:
-        return True 
+        return True
+
 
 if __name__ == '__main__':
     pass

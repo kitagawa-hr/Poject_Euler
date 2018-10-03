@@ -16,5 +16,14 @@ Which prime, below one-million, can be written as the sum of the most
 consecutive primes?
 """
 
-from sympy import prime
+from functions import is_prime, gen_num
 
+N = 1000000
+
+
+def main():
+    primes = (x for x in gen_num(lim=N) if is_prime(x))
+
+
+if __name__ == '__main__':
+    main()
