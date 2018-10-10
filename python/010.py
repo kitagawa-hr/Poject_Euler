@@ -12,12 +12,7 @@ N = 2000000
 
 
 def main():
-    prime_list = list()
-    for num in gen_num():
-        if num >= N:
-            break
-        if is_prime(num):
-            prime_list.append(num)
+    prime_list = [x for x in gen_num(lim=N) if is_prime(x)]
     print(sum(prime_list))
     return
 

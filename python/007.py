@@ -15,7 +15,7 @@ N = 10001
 
 def main():
     count = 0
-    for i in gen_num():
+    for i in gen_num(lim=10000000):
         if is_prime(i):
             count += 1
         if count == N:

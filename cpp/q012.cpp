@@ -2,15 +2,14 @@
 #include <string>
 #include <cmath>
 #include <vector>
+#include "utils.hpp"
 
 using namespace std;
 
 // 約数の個数が500以上の最初の三角数
 
-int divisor_num(int n){
-    
-}
+
 
 int main(){
-
+    cout << PrimeUtils::isPrime(31);
 }
