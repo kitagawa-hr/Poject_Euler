@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "utils.hpp"
+#include "euler.hpp"
 
 /*
 Project Euler Problem 27
