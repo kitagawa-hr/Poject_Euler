@@ -15,7 +15,6 @@ from operator import mul
 from numba import jit
 
 
-@jit('boolean(int64)')
 def is_prime(num):
     """
     >>> is_prime(-54)
