@@ -7,6 +7,8 @@ nimcache
 cpp/*
 rust/*
 nim/*
+haskell/*
 !*.cpp
 !*.rs
 !*.nim
+!*.hs
