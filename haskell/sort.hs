@@ -2,23 +2,37 @@ insert x [] = [x]
 insert y (x:xs)
     | y<x = y:x:xs
     | otherwise = x: insert y xs
+isort = foldr insert []
 
-isort [] = []
-isort (x:xs) = insert x (isort xs)
+bswap [x] = [x]
+bswap (x:xs)
+    | x > y     = y:x:ys
+    | otherwise = x:y:ys
+    where
+        (y:ys) = bswap xs
 
-bubble [] = []
-bubble [x,y]
-    | x < y = [x,y]
-    | otherwise = [y,x]
-bubble (x:y:xs)
-    | x > y = y: bubble (x:xs)
-    | otherwise = x: bubble (y:xs)
+bsort [x]=[x]
+bsort xs = y: bsort ys
+    where
+         (y:ys) = bswap xs
 
-bsort [] = []
-bsort (x:xs) = bubble(x:xs)
+merge xs [] = xs
+merge [] ys = ys
+merge (x:xs) (y:ys)
+    | x < y     = x : merge xs (y:ys)
+    | otherwise = y : merge (x:xs) ys
 
-main = do 
+
+msort []  = []
+msort [x] = [x]
+msort xs  = merge (msort (take h xs)) (msort (drop h xs))
+    where
+        h = length xs `div` 2
+
+
+
+main = do
     let lis = [4, 6, 9, 8, 3, 5, 1, 7, 2]
     print $ isort lis
-    print $ bubble lis
     print $ bsort lis
+    print $ msort [4, 6, 9, 8, 3, 5, 1, 7, 2]
