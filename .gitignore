@@ -3,10 +3,16 @@
 .vscode
 
 cpp/*
-rust/*
-nim/*
-haskell/*
 !*.cpp
+
+rust/*
 !*.rs
+
+nim/*
 !*.nim
+
+haskell/*
 !*.hs
+
+kotlin/*
+!*.kt
